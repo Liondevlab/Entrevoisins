@@ -12,8 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.neighbour_list.DetailNeighbourActivity"></activity>
-        <activity android:name=".ui.neighbour_list.DetailNeighbour" />
         <activity
             android:name=".ui.neighbour_list.AddNeighbourActivity"
             android:label="@string/activity_new_neighbour" />
@@ -23,10 +21,11 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.neighbour_details.DetailsNeighbourActivity"
+            android:label="Details"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
-
 </manifest>
