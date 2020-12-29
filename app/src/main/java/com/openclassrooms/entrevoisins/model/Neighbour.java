@@ -22,6 +22,9 @@ public class Neighbour {
     /** Phone number */
     private String phoneNumber;
 
+    /** Facebook URL */
+    private String facebook;
+
     /** About me */
     private String aboutMe;
 
@@ -38,6 +41,7 @@ public class Neighbour {
         this.avatarUrl = avatarUrl;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        this.facebook = "www.facebook.com/" + name;
         this.aboutMe = aboutMe;
     }
 
@@ -75,6 +79,10 @@ public class Neighbour {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public String getFacebook() {
+        return facebook;
     }
 
     public void setPhoneNumber(String phoneNumber) {
