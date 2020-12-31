@@ -1,7 +1,10 @@
 package com.openclassrooms.entrevoisins.service;
 
+import android.util.Log;
+
 import com.openclassrooms.entrevoisins.model.Neighbour;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,7 +13,7 @@ import java.util.List;
 public class DummyNeighbourApiService implements  NeighbourApiService {
 
     private List<Neighbour> neighbours = DummyNeighbourGenerator.generateNeighbours();
-
+    private List<Neighbour> favorites = new ArrayList<Neighbour>();
 
     /**
      * {@inheritDoc}
@@ -22,10 +25,36 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
 
     /**
      * {@inheritDoc}
+     * @return
+     */
+    @Override
+    public List<Neighbour> getFavorites() {
+        return favorites;
+    }
+
+    /**
+     * {@inheritDoc}
      */
     @Override
     public void deleteNeighbour(Neighbour neighbour) {
         neighbours.remove(neighbour);
+    }
+
+	/**
+     * {@inheritDoc}
+     * @param neighbour
+     */
+    @Override
+    public void createNeighbour(Neighbour neighbour) {
+        neighbours.add(neighbour);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void deleteFavorite(Neighbour neighbour) {
+        favorites.remove(neighbour);
     }
 
     /**
@@ -33,7 +62,7 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
      * @param neighbour
      */
     @Override
-    public void createNeighbour(Neighbour neighbour) {
-        neighbours.add(neighbour);
+    public void createFavorite(Neighbour neighbour) {
+        favorites.add(neighbour);
     }
 }

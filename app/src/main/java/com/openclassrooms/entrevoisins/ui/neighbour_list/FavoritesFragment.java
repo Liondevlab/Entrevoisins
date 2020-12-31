@@ -25,7 +25,7 @@ import java.util.List;
  * Entrevoisins
  * Created by LioNDeVLaB on 25/12/2020
  */
-public class FavoriteFragment extends Fragment {
+public class FavoritesFragment extends Fragment {
 	private NeighbourApiService mApiService;
 	private List<Neighbour> mNeighbours;
 	private RecyclerView mRecyclerView;
@@ -35,8 +35,8 @@ public class FavoriteFragment extends Fragment {
 	 * Create and return a new instance
 	 * @return @{@link NeighbourFragment}
 	 */
-	public static FavoriteFragment newInstance() {
-		FavoriteFragment fragment = new FavoriteFragment();
+	public static FavoritesFragment newInstance() {
+		FavoritesFragment fragment = new FavoritesFragment();
 		return fragment;
 	}
 
@@ -49,7 +49,7 @@ public class FavoriteFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.fragment_neighbour_list, container, false);
+		View view = inflater.inflate(R.layout.fragment_favorites_list, container, false);
 		Context context = view.getContext();
 		mRecyclerView = (RecyclerView) view;
 		mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -61,8 +61,8 @@ public class FavoriteFragment extends Fragment {
 	 * Init the List of neighbours
 	 */
 	private void initList() {
-		mNeighbours = mApiService.getNeighbours();
-		mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
+		mNeighbours = mApiService.getFavorites();
+		mRecyclerView.setAdapter(new MyFavoriteRecyclerViewAdapter(this.getContext(), mNeighbours));
 	}
 
 	@Override
@@ -92,6 +92,4 @@ public class FavoriteFragment extends Fragment {
 		mApiService.deleteNeighbour(event.neighbour);
 		initList();
 	}
-}
-
 }
