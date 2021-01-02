@@ -70,7 +70,7 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
 				getIntent().hasExtra("Neighbour");
 				if (mApiService.getFavorites().contains(neighbour)) {
 					mAddNeighbourFavorites.setActivated(false);
-					mApiService.deleteFromFavorite(neighbour);
+					mApiService.removeFromFavorite(neighbour);
 				} else {
 					mAddNeighbourFavorites.setActivated(true);
 					mApiService.addToFavorite(neighbour);
