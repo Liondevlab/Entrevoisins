@@ -10,9 +10,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
-
-import org.greenrobot.eventbus.EventBus;
+import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,12 +42,14 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
 	TextView mAboutMeText;
 
 	private Neighbour neighbour;
+	private NeighbourApiService mApiService;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_details_neighbour);
 		ButterKnife.bind(this);
+		mApiService = DI.getNeighbourApiService();
 		this.neighbour = (Neighbour) getIntent().getExtras().getSerializable("Neighbour");
 		updateDataOnView();
 		//Back Button
@@ -57,16 +59,34 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
 				finish();
 			}
 		});
-
+		NeighbourFavoriteState(neighbour);
 		/**
 		 * TODO
 		 * Ajout/Suppression des favoris
 		 */
-		this.mAddNeighbourFavorites.setOnClickListener(new View.OnClickListener() {
+		mAddNeighbourFavorites.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				getIntent().hasExtra("Neighbour");
+				if (mApiService.getFavorites().contains(neighbour)) {
+					mAddNeighbourFavorites.setActivated(false);
+					mApiService.deleteFromFavorite(neighbour);
+				} else {
+					mAddNeighbourFavorites.setActivated(true);
+					mApiService.addToFavorite(neighbour);
+				}
 			}
 		});
+	}
+
+	private void NeighbourFavoriteState(Neighbour neighbour) {
+		this.neighbour = (Neighbour) getIntent().getExtras().getSerializable("Neighbour");
+		assert neighbour != null;
+		if (mApiService.getFavorites().contains(neighbour)) {
+			mAddNeighbourFavorites.setActivated(true);
+		} else {
+			mAddNeighbourFavorites.setActivated(false);
+		}
 	}
 
 	/**

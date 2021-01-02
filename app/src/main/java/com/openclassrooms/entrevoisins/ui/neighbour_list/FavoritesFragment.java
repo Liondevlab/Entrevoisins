@@ -62,7 +62,7 @@ public class FavoritesFragment extends Fragment {
 	 */
 	private void initList() {
 		mNeighbours = mApiService.getFavorites();
-		mRecyclerView.setAdapter(new MyFavoriteRecyclerViewAdapter(this.getContext(), mNeighbours));
+		mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(this.getContext(), mNeighbours));
 	}
 
 	@Override
