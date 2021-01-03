@@ -26,7 +26,7 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
 	TextView mPersonNameHeader;
 	@BindView(R.id.detailsAvatar)
 	ImageView mDetailsAvatar;
-	@BindView(R.id.addNeighbourFavorites)
+	@BindView(R.id.favoriteButton)
 	FloatingActionButton mAddNeighbourFavorites;
 	@BindView(R.id.PersonName)
 	TextView mPersonName;

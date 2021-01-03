@@ -22,7 +22,6 @@ import com.openclassrooms.entrevoisins.ui.neighbour_details.DetailsNeighbourActi
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import java.io.Serializable;
 import java.util.List;
 
 
