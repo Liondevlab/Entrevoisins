@@ -25,21 +25,21 @@ Liste des Ajouts:
 L'application a été modifiée par Julien Guerard et peut être obtenu de la manière suivante:
 
 1. Récupérez l'adresse du dépôt Git de l'application :
-       2. https://github.com/Liondevlab/Entrevoisins.git
+      https://github.com/Liondevlab/Entrevoisins.git
 
-3. Lancez Android Studio.
+2. Lancez Android Studio.
 
-4. Sur la page d'accueil cliquez sur "Get from Version Control"
+3. Sur la page d'accueil cliquez sur "Get from Version Control"
 
-5. Collez l'adresse du dépôt dans "URL" et sélectionnez en dessous le dossier dans lequel vous souhaitez cloner le projet.
+4. Collez l'adresse du dépôt dans "URL" et sélectionnez en dessous le dossier dans lequel vous souhaitez cloner le projet.
 
-6. Cliquez ensuite sur "Clone".
+5. Cliquez ensuite sur "Clone".
 
-7. Entrez vos identifiants de GitHub.com puis cliquez sur "Login"
+6. Entrez vos identifiants de GitHub.com puis cliquez sur "Login"
 
-8. Une fois le projet Ouvert vous devez avoir installé un smartphone virtuel ou avoir branché un smartphone physique à votre machine pour pouvoir lancer l'application.
+7. Une fois le projet Ouvert vous devez avoir installé un smartphone virtuel ou avoir branché un smartphone physique à votre machine pour pouvoir lancer l'application.
 
-9. Dans la barre d'outils cliquez sur le marteau pour "Builder" le projet et ensuite vérifiez que App est bien sélectionné dans la liste déroulante juste à droite du marteau. 
+8. Dans la barre d'outils cliquez sur le marteau pour "Builder" le projet et ensuite vérifiez que App est bien sélectionné dans la liste déroulante juste à droite du marteau. 
 
-10. Tout de suite à droite de "App" sélectionnez le device que vous souhaitez utiliser dans la liste déroulante puis cliquez sur la flèche verte ("Run App") pour lancer l'application.
+9. Tout de suite à droite de "App" sélectionnez le device que vous souhaitez utiliser dans la liste déroulante puis cliquez sur la flèche verte ("Run App") pour lancer l'application.
 
