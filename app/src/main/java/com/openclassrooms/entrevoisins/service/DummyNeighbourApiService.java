@@ -12,8 +12,8 @@ import java.util.List;
  */
 public class DummyNeighbourApiService implements  NeighbourApiService {
 
-    private List<Neighbour> neighbours = DummyNeighbourGenerator.generateNeighbours();
-    private List<Neighbour> favorites = new ArrayList<>();
+    private final List<Neighbour> neighbours = DummyNeighbourGenerator.generateNeighbours();
+    private final List<Neighbour> favorites = new ArrayList<>();
 
     /**
      * {@inheritDoc}

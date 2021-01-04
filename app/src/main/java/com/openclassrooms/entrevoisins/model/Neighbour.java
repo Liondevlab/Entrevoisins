@@ -24,7 +24,7 @@ public class Neighbour implements Serializable {
     private String phoneNumber;
 
     /** Facebook URL */
-    private String facebook;
+    private final String facebook;
 
     /** About me */
     private String aboutMe;
@@ -42,6 +42,7 @@ public class Neighbour implements Serializable {
         this.avatarUrl = avatarUrl;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        // Adding facebook address
         this.facebook = "www.facebook.com/" + name;
         this.aboutMe = aboutMe;
     }

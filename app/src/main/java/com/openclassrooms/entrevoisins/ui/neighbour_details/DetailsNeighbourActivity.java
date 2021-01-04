@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
 
 public class DetailsNeighbourActivity extends AppCompatActivity {
 
-	// Declaration des variables pour recuperation des information Neighbour
+	//Declaration of variables for retrieving Neighbor information and setting buttons
 	@BindView(R.id.backArrow)
 	AppCompatImageButton mBackArrow;
 	@BindView(R.id.personNameHeader)
@@ -52,6 +52,7 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
 		mApiService = DI.getNeighbourApiService();
 		this.neighbour = (Neighbour) getIntent().getExtras().getSerializable("Neighbour");
 		updateDataOnView();
+
 		//Back Button
 		this.mBackArrow.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -59,10 +60,11 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
 				finish();
 			}
 		});
+
 		NeighbourFavoriteState(neighbour);
+
 		/**
-		 * TODO
-		 * Ajout/Suppression des favoris
+		 * Add / Remove to favorite list
 		 */
 		mAddNeighbourFavorites.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -79,18 +81,18 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
 		});
 	}
 
+	/**
+	 * Method who check if the Neighbour is in favorites and activate or not the favoriteButton
+	 * @param neighbour
+	 */
 	private void NeighbourFavoriteState(Neighbour neighbour) {
 		this.neighbour = (Neighbour) getIntent().getExtras().getSerializable("Neighbour");
 		assert neighbour != null;
-		if (mApiService.getFavorites().contains(neighbour)) {
-			mAddNeighbourFavorites.setActivated(true);
-		} else {
-			mAddNeighbourFavorites.setActivated(false);
-		}
+		mAddNeighbourFavorites.setActivated(mApiService.getFavorites().contains(neighbour));
 	}
 
 	/**
-	 * Methode qui rappatrie les infos du neighbour selectionné dans la vue
+	 * Method who get the Neighbour data to put it in the view
 	 */
 	private void updateDataOnView() {
 		Glide.with(mDetailsAvatar.getContext())
