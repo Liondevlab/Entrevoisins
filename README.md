@@ -3,7 +3,7 @@ P3_Guerard_Julien
 
 Ce dépôt contient une mini-application pour le P3 du parcours **Grande École du Numérique**.
 
-
+-------------------------------------------------------------------------
 
 Liste de l'existant:
 
@@ -13,7 +13,7 @@ Liste de l'existant:
 
 • Suppression d’un voisin
 
-
+-------------------------------------------------------------------------
 
 Liste des Ajouts:
 
@@ -35,7 +35,7 @@ Liste des Ajouts:
 
 • Implémentation de « Serializable » dans la classe Neighbour
 
-
+-------------------------------------------------------------------------
 
 L'application a été modifiée par Julien Guerard et peut être obtenu de la manière suivante:
 
