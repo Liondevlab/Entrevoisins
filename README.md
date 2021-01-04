@@ -29,11 +29,14 @@ Liste des Ajouts:
 
 • Ajout de la suppression de du voisin de la liste des favoris lors de la suppression d’un voisin
 
+• Activation de l'onglet Favoris dans ListNeighbourPagerAdapter
+
 • Création du fragment des favoris
 
 • Activation de l’onglet Favoris de la liste de voisins
 
 • Implémentation de « Serializable » dans la classe Neighbour
+
 
 -------------------------------------------------------------------------
 
