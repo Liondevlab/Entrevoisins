@@ -3,22 +3,34 @@ P3_Guerard_Julien
 
 Ce dépôt contient une mini-application pour le P3 du parcours **Grande École du Numérique**.
 
+
 Liste de l'existant:
 
 • Liste des Voisins
+
 • Ajout d’un voisin
+
 • Suppression d’un voisin
+
 
 Liste des Ajouts:
 
 • Ajout du clic sur un élément de la liste pour accès détails
+
 • Page des détails d’un voisin
+
 • Fonction Ajout/Suppr. de la liste des favoris via bouton étoilé
+
 • Bouton retour sur la page des détails
+
 • Ajout de l’adresse Facebook dans le générateur de voisin
+
 • Ajout de la suppression de du voisin de la liste des favoris lors de la suppression d’un voisin
+
 • Création du fragment des favoris
+
 • Activation de l’onglet Favoris de la liste de voisins
+
 • Implémentation de « Serializable » dans la classe Neighbour
 
 
