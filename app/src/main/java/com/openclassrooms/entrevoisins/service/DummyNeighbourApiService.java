@@ -2,6 +2,7 @@ package com.openclassrooms.entrevoisins.service;
 
 import android.util.Log;
 
+import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 
 import java.util.ArrayList;

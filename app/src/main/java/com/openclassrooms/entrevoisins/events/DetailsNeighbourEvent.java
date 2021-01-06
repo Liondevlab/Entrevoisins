@@ -8,6 +8,11 @@ import com.openclassrooms.entrevoisins.model.Neighbour;
 public class DetailsNeighbourEvent {
 
 	/**
+	 * Neighbour position in list (Neighbour or favorites)
+	 */
+	public boolean mIsFavorite;
+
+	/**
 	 * Neighbour to cast
 	 */
 	public Neighbour neighbour;
@@ -16,7 +21,12 @@ public class DetailsNeighbourEvent {
 	 * Constructor.
 	 * @param neighbour
 	 */
-	public DetailsNeighbourEvent(Neighbour neighbour) {
+	public DetailsNeighbourEvent(Neighbour neighbour, boolean isFavorite) {
 		this.neighbour = neighbour;
+		this.mIsFavorite = isFavorite;
+	}
+
+	public boolean getIfNeighbourIsFavorite() {
+		return mIsFavorite;
 	}
 }

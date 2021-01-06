@@ -13,6 +13,9 @@ import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
+import com.openclassrooms.entrevoisins.ui.neighbour_list.NeighbourFragment;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -82,7 +85,7 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
 	}
 
 	/**
-	 * Method who check if the Neighbour is in favorites and activate or not the favoriteButton
+	 * Check if the Neighbour is in favorites and activate or not the favoriteButton
 	 * @param neighbour
 	 */
 	private void NeighbourFavoriteState(Neighbour neighbour) {
@@ -92,7 +95,7 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
 	}
 
 	/**
-	 * Method who get the Neighbour data to put it in the view
+	 * Get the Neighbour data to put in the view
 	 */
 	private void updateDataOnView() {
 		Glide.with(mDetailsAvatar.getContext())

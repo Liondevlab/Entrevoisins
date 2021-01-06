@@ -88,7 +88,7 @@ public class NeighbourDetailsAndFavoriteTest {
 		// We go back to check the favorite list content
 		onView(ViewMatchers.withId(R.id.backArrow)).perform(click());
 		onView(withContentDescription("Favorites")).perform(click());
-		onView(ViewMatchers.withId(R.id.list_favorites))
+		onView(ViewMatchers.withId(R.id.list_neighbours))
 				.check(matches(hasMinimumChildCount(1)))
 		// We go to the details again from the favorite list to remove neighbour from favorites
 				.perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
@@ -96,7 +96,7 @@ public class NeighbourDetailsAndFavoriteTest {
 		// We go back and check that there is no more neighbour in the favorite list
 		onView(ViewMatchers.withId(R.id.backArrow)).perform(click());
 		onView(withContentDescription("Favorites")).perform(click());
-		onView(ViewMatchers.withId(R.id.list_favorites))
+		onView(ViewMatchers.withId(R.id.list_neighbours))
 				.check(matches(hasMinimumChildCount(0)));
 	}
 }
