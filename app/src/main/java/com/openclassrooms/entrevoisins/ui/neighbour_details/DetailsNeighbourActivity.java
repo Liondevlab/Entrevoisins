@@ -1,8 +1,8 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_details;
 
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.AppCompatImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;

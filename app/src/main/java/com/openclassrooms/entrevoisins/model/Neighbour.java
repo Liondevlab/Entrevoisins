@@ -78,6 +78,9 @@ public class Neighbour implements Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -85,10 +88,6 @@ public class Neighbour implements Serializable {
 
     public String getFacebook() {
         return facebook;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
     }
 
     public String getAboutMe() {

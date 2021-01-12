@@ -20,7 +20,6 @@ import com.openclassrooms.entrevoisins.ui.neighbour_details.DetailsNeighbourActi
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
@@ -35,7 +34,7 @@ public class NeighbourFragment extends Fragment{
     @BindView(R.id.list_neighbours)
     public RecyclerView mRecyclerView;
     private boolean mIsFavorite;
-
+    private final static String IS_FAVORITE_KEY = "IS_FAVORITE_KEY";
 
     /**
      * Create and return a new instance
@@ -45,7 +44,7 @@ public class NeighbourFragment extends Fragment{
     public static NeighbourFragment newInstance(boolean isFavorite) {
         NeighbourFragment fragment = new NeighbourFragment();
         Bundle args = new Bundle();
-        args.putBoolean("mIsFavorite", isFavorite);
+        args.putBoolean(IS_FAVORITE_KEY, isFavorite);
         fragment.setArguments(args);
         return fragment;
     }
@@ -65,7 +64,8 @@ public class NeighbourFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Bundle args = getArguments();
-        mIsFavorite = args.getBoolean("mIsFavorite", false);
+        assert args != null;
+        mIsFavorite = args.getBoolean(IS_FAVORITE_KEY, false);
         View view = inflater.inflate(R.layout.fragment_neighbour_list, container, false);
         ButterKnife.bind(this, view);
         return view;
@@ -75,8 +75,6 @@ public class NeighbourFragment extends Fragment{
      * Init the List of neighbours
      */
     private void initList() {
-        Bundle args = getArguments();
-        boolean mIsFavorite = args.getBoolean("mIsFavorite", false);
         if (!mIsFavorite) {
             mNeighbours = mApiService.getNeighbours();
         } else {
@@ -105,10 +103,9 @@ public class NeighbourFragment extends Fragment{
      */
     @Subscribe
     public void onDeleteNeighbour(DeleteNeighbourEvent event) {
-        if (event.getIfNeighbourIsFavorite()) {
-            mApiService.removeFromFavorite(event.neighbour);
-        } else {
-            mApiService.deleteNeighbour(event.neighbour);
+        if (event !=null && event.getIfNeighbourIsFavorite() == mIsFavorite) {
+            if (mIsFavorite) mApiService.removeFromFavorite(event.neighbour);
+            else mApiService.deleteNeighbour(event.neighbour);
         }
         initList();
     }
@@ -118,10 +115,9 @@ public class NeighbourFragment extends Fragment{
      *
      * @param event
      */
-    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    @Subscribe
     public void onDetailsNeighbour(DetailsNeighbourEvent event) {
-        DetailsNeighbourEvent stickyEvent = EventBus.getDefault().removeStickyEvent(DetailsNeighbourEvent.class);
-        if (stickyEvent != null) {
+        if (event != null && event.getIfNeighbourIsFavorite() == mIsFavorite) {
             Intent detailsNeighbourActivityIntent = new Intent(getContext(), DetailsNeighbourActivity.class);
             detailsNeighbourActivityIntent.putExtra("Neighbour", event.neighbour);
             startActivity(detailsNeighbourActivityIntent);

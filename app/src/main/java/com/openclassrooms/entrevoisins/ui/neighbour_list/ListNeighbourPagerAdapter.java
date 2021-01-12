@@ -9,7 +9,7 @@ public class ListNeighbourPagerAdapter extends FragmentPagerAdapter {
     public ListNeighbourPagerAdapter(FragmentManager fm) {
         super(fm);
     }
-    public boolean mIsFavorite;
+    //public boolean mIsFavorite;
     /**
      * getItem is called to instantiate the fragment for the given page.
      * @param position
@@ -18,12 +18,7 @@ public class ListNeighbourPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        if (position == 0) {
-            mIsFavorite = false;
-        } else {
-            mIsFavorite = true;
-        }
-        return NeighbourFragment.newInstance(mIsFavorite);
+        return NeighbourFragment.newInstance(position != 0);
     }
 
     /**

@@ -1,6 +1,5 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
-import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.content.Context;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -55,7 +53,7 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
         holder.mDeleteButton.setOnClickListener(v -> EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour, mIsFavorite)));
 
         // Use of eventBus to launch DetailsNeighbourEvent with data
-        holder.itemView.setOnClickListener(v -> EventBus.getDefault().postSticky(new DetailsNeighbourEvent(neighbour, mIsFavorite)));
+        holder.itemView.setOnClickListener(v -> EventBus.getDefault().post(new DetailsNeighbourEvent(neighbour, mIsFavorite)));
         //EventBus.getDefault().post(new DetailsNeighbourEvent(neighbour, mIsFavorite));
     }
 
