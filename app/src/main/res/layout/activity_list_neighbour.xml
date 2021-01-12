@@ -35,12 +35,14 @@
                 android:id="@+id/tabItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="false"
                 android:text="@string/tab_neighbour_title" />
 
             <android.support.design.widget.TabItem
                 android:id="@+id/tabItem2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="true"
                 android:text="@string/tab_favorites_title" />
 
         </android.support.design.widget.TabLayout>

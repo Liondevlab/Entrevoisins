@@ -10,6 +10,7 @@ import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 import com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity;
+import com.openclassrooms.entrevoisins.ui.neighbour_list.NeighbourFragment;
 
 
 import org.junit.Before;
@@ -22,12 +23,14 @@ import java.util.List;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.assertThat;
+import static android.support.test.espresso.matcher.ViewMatchers.hasFocus;
 import static android.support.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.core.IsNull.notNullValue;
 
 
@@ -67,7 +70,7 @@ public class NeighbourDetailsAndFavoriteTest {
 	@Test
 	public void myNeighboursList_clickOnNeighbourAction_shouldShowDetailsPage() {
 		// Given : Perform a click on a neighbour open his details
-		onView(ViewMatchers.withId(R.id.list_neighbours))
+		onView(allOf(withId(R.id.list_neighbours), hasFocus()))
 				.perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
 		// When : The detailsNeighbourActivity is shown
 		onView(withId(R.id.detailsNeighbour)).check(matches(isDisplayed()));
@@ -82,13 +85,13 @@ public class NeighbourDetailsAndFavoriteTest {
 	@Test
 	public void myDetailsNeighbourActivity_addRemoveFavoriteAction_shouldAddAndRemoveNeighbourFromFavoriteList() {
 		// àWe go to the details activity to add neighbour to favorite
-		onView(ViewMatchers.withId(R.id.list_neighbours))
+		onView(allOf(withId(R.id.list_neighbours), hasFocus()))
 				.perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
 		onView(ViewMatchers.withId(R.id.favoriteButton)).perform(click());
 		// We go back to check the favorite list content
 		onView(ViewMatchers.withId(R.id.backArrow)).perform(click());
 		onView(withContentDescription("Favorites")).perform(click());
-		onView(ViewMatchers.withId(R.id.list_neighbours))
+		onView(allOf(withId(R.id.list_neighbours), hasFocus()))
 				.check(matches(hasMinimumChildCount(1)))
 		// We go to the details again from the favorite list to remove neighbour from favorites
 				.perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
@@ -96,7 +99,7 @@ public class NeighbourDetailsAndFavoriteTest {
 		// We go back and check that there is no more neighbour in the favorite list
 		onView(ViewMatchers.withId(R.id.backArrow)).perform(click());
 		onView(withContentDescription("Favorites")).perform(click());
-		onView(ViewMatchers.withId(R.id.list_neighbours))
+		onView(allOf(withId(R.id.list_neighbours), hasFocus()))
 				.check(matches(hasMinimumChildCount(0)));
 	}
 }

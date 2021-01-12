@@ -57,29 +57,21 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
 		updateDataOnView();
 
 		//Back Button
-		this.mBackArrow.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				finish();
-			}
-		});
+		this.mBackArrow.setOnClickListener(v -> finish());
 
 		NeighbourFavoriteState(neighbour);
 
 		/**
 		 * Add / Remove to favorite list
 		 */
-		mAddNeighbourFavorites.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				getIntent().hasExtra("Neighbour");
-				if (mApiService.getFavorites().contains(neighbour)) {
-					mAddNeighbourFavorites.setActivated(false);
-					mApiService.removeFromFavorite(neighbour);
-				} else {
-					mAddNeighbourFavorites.setActivated(true);
-					mApiService.addToFavorite(neighbour);
-				}
+		mAddNeighbourFavorites.setOnClickListener(v -> {
+			getIntent().hasExtra("Neighbour");
+			if (mApiService.getFavorites().contains(neighbour)) {
+				mAddNeighbourFavorites.setActivated(false);
+				mApiService.removeFromFavorite(neighbour);
+			} else {
+				mAddNeighbourFavorites.setActivated(true);
+				mApiService.addToFavorite(neighbour);
 			}
 		});
 	}

@@ -52,7 +52,8 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
         holder.mDeleteButton.setOnClickListener(v -> EventBus.getDefault().post(new DeleteNeighbourEvent(neighbour, mIsFavorite)));
 
         // Use of eventBus to launch DetailsNeighbourEvent with data
-        holder.itemView.setOnClickListener(v -> EventBus.getDefault().post(new DetailsNeighbourEvent(neighbour, mIsFavorite)));
+        holder.itemView.setOnClickListener(v -> EventBus.getDefault().postSticky(new DetailsNeighbourEvent(neighbour, mIsFavorite)));
+        //EventBus.getDefault().post(new DetailsNeighbourEvent(neighbour, mIsFavorite));
     }
 
     @Override

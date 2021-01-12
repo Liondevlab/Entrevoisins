@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
@@ -21,6 +20,7 @@ import com.openclassrooms.entrevoisins.ui.neighbour_details.DetailsNeighbourActi
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
@@ -35,6 +35,7 @@ public class NeighbourFragment extends Fragment{
     @BindView(R.id.list_neighbours)
     public RecyclerView mRecyclerView;
     private boolean mIsFavorite;
+
 
     /**
      * Create and return a new instance
@@ -64,7 +65,7 @@ public class NeighbourFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Bundle args = getArguments();
-        mIsFavorite  = args.getBoolean("mIsFavorite", false);
+        mIsFavorite = args.getBoolean("mIsFavorite", false);
         View view = inflater.inflate(R.layout.fragment_neighbour_list, container, false);
         ButterKnife.bind(this, view);
         return view;
@@ -76,7 +77,7 @@ public class NeighbourFragment extends Fragment{
     private void initList() {
         Bundle args = getArguments();
         boolean mIsFavorite = args.getBoolean("mIsFavorite", false);
-        if (mIsFavorite == false) {
+        if (!mIsFavorite) {
             mNeighbours = mApiService.getNeighbours();
         } else {
             mNeighbours = mApiService.getFavorites();
@@ -87,8 +88,8 @@ public class NeighbourFragment extends Fragment{
     @Override
     public void onStart() {
         super.onStart();
-        EventBus.getDefault().register(this);
         initList();
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -104,7 +105,7 @@ public class NeighbourFragment extends Fragment{
      */
     @Subscribe
     public void onDeleteNeighbour(DeleteNeighbourEvent event) {
-        if (event.getIfNeighbourIsFavorite() == true) {
+        if (event.getIfNeighbourIsFavorite()) {
             mApiService.removeFromFavorite(event.neighbour);
         } else {
             mApiService.deleteNeighbour(event.neighbour);
@@ -117,14 +118,13 @@ public class NeighbourFragment extends Fragment{
      *
      * @param event
      */
-    @Subscribe
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onDetailsNeighbour(DetailsNeighbourEvent event) {
-        if (event.getIfNeighbourIsFavorite() == mIsFavorite) {
-            TextView neighbourPosition = (TextView) mRecyclerView.findViewById(R.id.tabItem);
-            neighbourPosition.setText("" + event.getIfNeighbourIsFavorite());
+        DetailsNeighbourEvent stickyEvent = EventBus.getDefault().removeStickyEvent(DetailsNeighbourEvent.class);
+        if (stickyEvent != null) {
+            Intent detailsNeighbourActivityIntent = new Intent(getContext(), DetailsNeighbourActivity.class);
+            detailsNeighbourActivityIntent.putExtra("Neighbour", event.neighbour);
+            startActivity(detailsNeighbourActivityIntent);
         }
-        Intent detailsNeighbourActivityIntent = new Intent(getContext(), DetailsNeighbourActivity.class);
-        detailsNeighbourActivityIntent.putExtra("Neighbour", event.neighbour);
-        startActivity(detailsNeighbourActivityIntent);
     }
 }
