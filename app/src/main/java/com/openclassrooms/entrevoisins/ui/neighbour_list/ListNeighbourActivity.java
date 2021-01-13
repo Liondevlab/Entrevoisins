@@ -16,15 +16,10 @@ import butterknife.OnClick;
 public class ListNeighbourActivity extends AppCompatActivity {
 
     // UI Components
-    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.tabs)
     TabLayout mTabLayout;
-
-    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
-
-    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.container)
     ViewPager mViewPager;
 

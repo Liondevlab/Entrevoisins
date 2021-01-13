@@ -1,6 +1,5 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -32,12 +31,9 @@ import butterknife.ButterKnife;
 public class NeighbourFragment extends Fragment{
 
     private NeighbourApiService mApiService;
-    private List<Neighbour> mNeighbours;
-
     private boolean mIsFavorite;
     private final static String IS_FAVORITE_KEY = "IS_FAVORITE_KEY";
 
-    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.list_neighbours)
     public RecyclerView mRecyclerView;
 
@@ -80,6 +76,7 @@ public class NeighbourFragment extends Fragment{
      * Init the List of neighbours
      */
     private void initList() {
+        List<Neighbour> mNeighbours;
         if (!mIsFavorite) {
             mNeighbours = mApiService.getNeighbours();
         } else {
