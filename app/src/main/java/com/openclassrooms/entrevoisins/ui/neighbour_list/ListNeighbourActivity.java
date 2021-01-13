@@ -1,5 +1,6 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -15,10 +16,15 @@ import butterknife.OnClick;
 public class ListNeighbourActivity extends AppCompatActivity {
 
     // UI Components
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.tabs)
     TabLayout mTabLayout;
+
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
+
+    @SuppressLint("NonConstantResourceId")
     @BindView(R.id.container)
     ViewPager mViewPager;
 
@@ -38,6 +44,7 @@ public class ListNeighbourActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("NonConstantResourceId")
     @OnClick(R.id.add_neighbour)
     void addNeighbour() {
         AddNeighbourActivity.navigate(this);

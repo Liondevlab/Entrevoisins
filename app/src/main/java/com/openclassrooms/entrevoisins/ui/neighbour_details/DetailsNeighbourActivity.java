@@ -13,6 +13,8 @@ import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -49,7 +51,7 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
 		setContentView(R.layout.activity_details_neighbour);
 		ButterKnife.bind(this);
 		mApiService = DI.getNeighbourApiService();
-		this.neighbour = (Neighbour) getIntent().getExtras().getSerializable("Neighbour");
+		this.neighbour = (Neighbour) Objects.requireNonNull(getIntent().getExtras()).getSerializable("Neighbour");
 		updateDataOnView();
 
 		//Back Button
@@ -57,9 +59,7 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
 
 		NeighbourFavoriteState(neighbour);
 
-		/**
-		 * Add / Remove to favorite list
-		 */
+		//Add / Remove to favorite list
 		mAddNeighbourFavorites.setOnClickListener(v -> {
 			getIntent().hasExtra("Neighbour");
 			if (mApiService.getFavorites().contains(neighbour)) {
@@ -77,7 +77,7 @@ public class DetailsNeighbourActivity extends AppCompatActivity {
 	 * @param neighbour
 	 */
 	private void NeighbourFavoriteState(Neighbour neighbour) {
-		this.neighbour = (Neighbour) getIntent().getExtras().getSerializable("Neighbour");
+		this.neighbour = (Neighbour) Objects.requireNonNull(getIntent().getExtras()).getSerializable("Neighbour");
 		assert neighbour != null;
 		mAddNeighbourFavorites.setActivated(mApiService.getFavorites().contains(neighbour));
 	}

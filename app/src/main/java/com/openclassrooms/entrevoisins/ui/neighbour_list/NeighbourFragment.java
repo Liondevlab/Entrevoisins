@@ -1,5 +1,6 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -22,6 +23,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,10 +33,13 @@ public class NeighbourFragment extends Fragment{
 
     private NeighbourApiService mApiService;
     private List<Neighbour> mNeighbours;
-    @BindView(R.id.list_neighbours)
-    public RecyclerView mRecyclerView;
+
     private boolean mIsFavorite;
     private final static String IS_FAVORITE_KEY = "IS_FAVORITE_KEY";
+
+    @SuppressLint("NonConstantResourceId")
+    @BindView(R.id.list_neighbours)
+    public RecyclerView mRecyclerView;
 
     /**
      * Create and return a new instance
@@ -58,7 +63,7 @@ public class NeighbourFragment extends Fragment{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getContext()), DividerItemDecoration.VERTICAL));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
+import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -54,7 +55,7 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
 
         // Use of eventBus to launch DetailsNeighbourEvent with data
         holder.itemView.setOnClickListener(v -> EventBus.getDefault().post(new DetailsNeighbourEvent(neighbour, mIsFavorite)));
-        //EventBus.getDefault().post(new DetailsNeighbourEvent(neighbour, mIsFavorite));
+
     }
 
     @Override
@@ -62,11 +63,17 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
         return mNeighbours.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+
+        @SuppressLint("NonConstantResourceId")
         @BindView(R.id.item_list_avatar)
         public ImageView mNeighbourAvatar;
+
+        @SuppressLint("NonConstantResourceId")
         @BindView(R.id.item_list_name)
         public TextView mNeighbourName;
+
+        @SuppressLint("NonConstantResourceId")
         @BindView(R.id.item_list_delete_button)
         public ImageButton mDeleteButton;
 
